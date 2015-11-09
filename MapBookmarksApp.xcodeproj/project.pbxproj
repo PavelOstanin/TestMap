@@ -1,0 +1,324 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EEAF543A1BF07890005703A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EEAF54391BF07890005703A0 /* main.m */; };
+		EEAF543D1BF07890005703A0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EEAF543C1BF07890005703A0 /* AppDelegate.m */; };
+		EEAF54401BF07890005703A0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEAF543F1BF07890005703A0 /* ViewController.m */; };
+		EEAF54431BF07890005703A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEAF54411BF07890005703A0 /* Main.storyboard */; };
+		EEAF54461BF07890005703A0 /* MapBookmarksApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EEAF54441BF07890005703A0 /* MapBookmarksApp.xcdatamodeld */; };
+		EEAF54481BF07890005703A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEAF54471BF07890005703A0 /* Assets.xcassets */; };
+		EEAF544B1BF07890005703A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEAF54491BF07890005703A0 /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		EEAF54351BF07890005703A0 /* MapBookmarksApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapBookmarksApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEAF54391BF07890005703A0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EEAF543B1BF07890005703A0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		EEAF543C1BF07890005703A0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		EEAF543E1BF07890005703A0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		EEAF543F1BF07890005703A0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		EEAF54421BF07890005703A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EEAF54451BF07890005703A0 /* MapBookmarksApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MapBookmarksApp.xcdatamodel; sourceTree = "<group>"; };
+		EEAF54471BF07890005703A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EEAF544A1BF07890005703A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EEAF544C1BF07890005703A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EEAF54321BF07890005703A0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EEAF542C1BF07890005703A0 = {
+			isa = PBXGroup;
+			children = (
+				EEAF54371BF07890005703A0 /* MapBookmarksApp */,
+				EEAF54361BF07890005703A0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EEAF54361BF07890005703A0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EEAF54351BF07890005703A0 /* MapBookmarksApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EEAF54371BF07890005703A0 /* MapBookmarksApp */ = {
+			isa = PBXGroup;
+			children = (
+				EEAF543B1BF07890005703A0 /* AppDelegate.h */,
+				EEAF543C1BF07890005703A0 /* AppDelegate.m */,
+				EEAF543E1BF07890005703A0 /* ViewController.h */,
+				EEAF543F1BF07890005703A0 /* ViewController.m */,
+				EEAF54411BF07890005703A0 /* Main.storyboard */,
+				EEAF54471BF07890005703A0 /* Assets.xcassets */,
+				EEAF54491BF07890005703A0 /* LaunchScreen.storyboard */,
+				EEAF544C1BF07890005703A0 /* Info.plist */,
+				EEAF54441BF07890005703A0 /* MapBookmarksApp.xcdatamodeld */,
+				EEAF54381BF07890005703A0 /* Supporting Files */,
+			);
+			path = MapBookmarksApp;
+			sourceTree = "<group>";
+		};
+		EEAF54381BF07890005703A0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EEAF54391BF07890005703A0 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EEAF54341BF07890005703A0 /* MapBookmarksApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EEAF544F1BF07890005703A0 /* Build configuration list for PBXNativeTarget "MapBookmarksApp" */;
+			buildPhases = (
+				EEAF54311BF07890005703A0 /* Sources */,
+				EEAF54321BF07890005703A0 /* Frameworks */,
+				EEAF54331BF07890005703A0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MapBookmarksApp;
+			productName = MapBookmarksApp;
+			productReference = EEAF54351BF07890005703A0 /* MapBookmarksApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EEAF542D1BF07890005703A0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = PavelOstanin;
+				TargetAttributes = {
+					EEAF54341BF07890005703A0 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+				};
+			};
+			buildConfigurationList = EEAF54301BF07890005703A0 /* Build configuration list for PBXProject "MapBookmarksApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EEAF542C1BF07890005703A0;
+			productRefGroup = EEAF54361BF07890005703A0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EEAF54341BF07890005703A0 /* MapBookmarksApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EEAF54331BF07890005703A0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEAF544B1BF07890005703A0 /* LaunchScreen.storyboard in Resources */,
+				EEAF54481BF07890005703A0 /* Assets.xcassets in Resources */,
+				EEAF54431BF07890005703A0 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EEAF54311BF07890005703A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEAF54461BF07890005703A0 /* MapBookmarksApp.xcdatamodeld in Sources */,
+				EEAF54401BF07890005703A0 /* ViewController.m in Sources */,
+				EEAF543D1BF07890005703A0 /* AppDelegate.m in Sources */,
+				EEAF543A1BF07890005703A0 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EEAF54411BF07890005703A0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EEAF54421BF07890005703A0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EEAF54491BF07890005703A0 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EEAF544A1BF07890005703A0 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EEAF544D1BF07890005703A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EEAF544E1BF07890005703A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EEAF54501BF07890005703A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MapBookmarksApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = PavelOstanin.MapBookmarksApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EEAF54511BF07890005703A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MapBookmarksApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = PavelOstanin.MapBookmarksApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EEAF54301BF07890005703A0 /* Build configuration list for PBXProject "MapBookmarksApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EEAF544D1BF07890005703A0 /* Debug */,
+				EEAF544E1BF07890005703A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EEAF544F1BF07890005703A0 /* Build configuration list for PBXNativeTarget "MapBookmarksApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EEAF54501BF07890005703A0 /* Debug */,
+				EEAF54511BF07890005703A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		EEAF54441BF07890005703A0 /* MapBookmarksApp.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				EEAF54451BF07890005703A0 /* MapBookmarksApp.xcdatamodel */,
+			);
+			currentVersion = EEAF54451BF07890005703A0 /* MapBookmarksApp.xcdatamodel */;
+			path = MapBookmarksApp.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = EEAF542D1BF07890005703A0 /* Project object */;
+}
