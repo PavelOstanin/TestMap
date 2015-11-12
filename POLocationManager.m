@@ -25,7 +25,7 @@
     return _sharedInstance;
 }
 - (void)initCurrentLocation {
-    self.locationManager.distanceFilter = kCLDistanceFilterNone;
+    self.locationManager.distanceFilter = 100;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
     self.locationManager.activityType = CLActivityTypeAutomotiveNavigation;
     [self.locationManager startUpdatingLocation];
@@ -61,6 +61,8 @@
 }
 
 - (void)addMyLocationOnMapView:(MKMapView*)mapView{
+    NSPredicate *predicat = [NSPredicate predicateWithFormat:@"title == %@",@"MyLocation"];
+    [mapView removeAnnotations:[mapView.annotations filteredArrayUsingPredicate:predicat]];
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc]init];
     annotation.coordinate = self.lastValidLocation.coordinate;
     annotation.title = @"MyLocation";

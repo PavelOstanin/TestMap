@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5A95DE2C8BDEFD2E9AF89F26 /* libPods-MapBookmarksApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DB8CCE7EEDFACAED8A2E739 /* libPods-MapBookmarksApp.a */; };
+		5A95DE2C8BDEFD2E9AF89F26 /* libPods-MapBookmarksApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DB8CCE7EEDFACAED8A2E739 /* libPods-MapBookmarksApp.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		EE28EB961BF3A998007CF73A /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = EE28EB941BF3A998007CF73A /* Location.m */; settings = {ASSET_TAGS = (); }; };
 		EE786E3D1BF211C900B72F56 /* POLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EE786E3C1BF211C900B72F56 /* POLocationManager.m */; settings = {ASSET_TAGS = (); }; };
 		EEA0D46B1BF49FE50077B6B4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEA0D46A1BF49FE50077B6B4 /* CoreData.framework */; };
@@ -20,6 +20,7 @@
 		EEAF544B1BF07890005703A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEAF54491BF07890005703A0 /* LaunchScreen.storyboard */; };
 		EEAF54541BF07A85005703A0 /* POMainMapScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEAF54531BF07A85005703A0 /* POMainMapScreenViewController.m */; settings = {ASSET_TAGS = (); }; };
 		EEE089921BF0F28E00DA49A5 /* POCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE089911BF0F28E00DA49A5 /* POCoreDataManager.m */; settings = {ASSET_TAGS = (); }; };
+		EEFD84E31BF4E5E700610280 /* POBookmarksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEFD84E21BF4E5E700610280 /* POBookmarksTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,8 @@
 		EEAF54531BF07A85005703A0 /* POMainMapScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POMainMapScreenViewController.m; sourceTree = "<group>"; };
 		EEE089901BF0F28E00DA49A5 /* POCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POCoreDataManager.h; sourceTree = "<group>"; };
 		EEE089911BF0F28E00DA49A5 /* POCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POCoreDataManager.m; sourceTree = "<group>"; };
+		EEFD84E11BF4E5E700610280 /* POBookmarksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POBookmarksTableViewController.h; sourceTree = "<group>"; };
+		EEFD84E21BF4E5E700610280 /* POBookmarksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POBookmarksTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +112,8 @@
 				EEAF543C1BF07890005703A0 /* AppDelegate.m */,
 				EEAF54521BF07A85005703A0 /* POMainMapScreenViewController.h */,
 				EEAF54531BF07A85005703A0 /* POMainMapScreenViewController.m */,
+				EEFD84E11BF4E5E700610280 /* POBookmarksTableViewController.h */,
+				EEFD84E21BF4E5E700610280 /* POBookmarksTableViewController.m */,
 				EEAF54411BF07890005703A0 /* Main.storyboard */,
 				EEAF54471BF07890005703A0 /* Assets.xcassets */,
 				EEAF54491BF07890005703A0 /* LaunchScreen.storyboard */,
@@ -256,6 +261,7 @@
 				EEAF54461BF07890005703A0 /* MapBookmarksApp.xcdatamodeld in Sources */,
 				EEAF543D1BF07890005703A0 /* AppDelegate.m in Sources */,
 				EEE089921BF0F28E00DA49A5 /* POCoreDataManager.m in Sources */,
+				EEFD84E31BF4E5E700610280 /* POBookmarksTableViewController.m in Sources */,
 				EEAF543A1BF07890005703A0 /* main.m in Sources */,
 				EE28EB961BF3A998007CF73A /* Location.m in Sources */,
 				EEAF54541BF07A85005703A0 /* POMainMapScreenViewController.m in Sources */,

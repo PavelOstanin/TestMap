@@ -63,13 +63,14 @@
                     <navigationItem key="navigationItem" id="Bl8-Tp-BW8">
                         <barButtonItem key="leftBarButtonItem" title="Route" id="oES-Pg-Eph">
                             <connections>
-                                <action selector="showPopover:" destination="BYZ-38-t0r" id="t9s-0T-hS3"/>
+                                <action selector="showPopover:" destination="BYZ-38-t0r" id="AMp-mq-WaS"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Bookmarks" id="lfz-go-2M9"/>
                     </navigationItem>
                     <connections>
                         <outlet property="mainPlaceMap" destination="uXY-Sq-ri9" id="DMm-zi-tcd"/>
+                        <segue destination="jIw-lO-gQW" kind="custom" identifier="show" customClass="WYStoryboardPopoverSegue" id="LrY-wq-6lX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -98,6 +99,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="20x-g2-cdy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="456" y="364.5"/>
+        </scene>
+        <!--Bookmarks Table View Controller-->
+        <scene sceneID="Xc0-HL-zom">
+            <objects>
+                <tableViewController storyboardIdentifier="bookmarksTable" id="jIw-lO-gQW" customClass="POBookmarksTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="GwR-Bg-mlY">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="484-Hr-jAC">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="484-Hr-jAC" id="87t-ne-Tch">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="jIw-lO-gQW" id="7Uf-zI-6IA"/>
+                            <outlet property="delegate" destination="jIw-lO-gQW" id="b4Y-ft-IDB"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="vuJ-HJ-cJ0" kind="unwind" identifier="unwindToMap" unwindAction="unwindFromBookmarksList:" id="Dqv-24-KKi"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ciE-ee-OGm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="vuJ-HJ-cJ0" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1228.5" y="1029.75"/>
         </scene>
     </scenes>
 </document>
