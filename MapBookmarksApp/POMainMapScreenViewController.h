@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  POMainMapScreenViewController.h
 //  MapBookmarksApp
 //
 //  Created by Pavel Ostanin on 09/11/2015.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface POMainMapScreenViewController : UIViewController
 
 @end
-

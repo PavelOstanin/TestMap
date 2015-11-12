@@ -7,27 +7,44 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A95DE2C8BDEFD2E9AF89F26 /* libPods-MapBookmarksApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DB8CCE7EEDFACAED8A2E739 /* libPods-MapBookmarksApp.a */; };
+		EE28EB961BF3A998007CF73A /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = EE28EB941BF3A998007CF73A /* Location.m */; settings = {ASSET_TAGS = (); }; };
+		EE786E3D1BF211C900B72F56 /* POLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EE786E3C1BF211C900B72F56 /* POLocationManager.m */; settings = {ASSET_TAGS = (); }; };
+		EEA0D46B1BF49FE50077B6B4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEA0D46A1BF49FE50077B6B4 /* CoreData.framework */; };
+		EEA0D46D1BF49FF10077B6B4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEA0D46C1BF49FF10077B6B4 /* CoreLocation.framework */; };
 		EEAF543A1BF07890005703A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EEAF54391BF07890005703A0 /* main.m */; };
 		EEAF543D1BF07890005703A0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EEAF543C1BF07890005703A0 /* AppDelegate.m */; };
-		EEAF54401BF07890005703A0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEAF543F1BF07890005703A0 /* ViewController.m */; };
 		EEAF54431BF07890005703A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEAF54411BF07890005703A0 /* Main.storyboard */; };
 		EEAF54461BF07890005703A0 /* MapBookmarksApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EEAF54441BF07890005703A0 /* MapBookmarksApp.xcdatamodeld */; };
 		EEAF54481BF07890005703A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEAF54471BF07890005703A0 /* Assets.xcassets */; };
 		EEAF544B1BF07890005703A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEAF54491BF07890005703A0 /* LaunchScreen.storyboard */; };
+		EEAF54541BF07A85005703A0 /* POMainMapScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEAF54531BF07A85005703A0 /* POMainMapScreenViewController.m */; settings = {ASSET_TAGS = (); }; };
+		EEE089921BF0F28E00DA49A5 /* POCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE089911BF0F28E00DA49A5 /* POCoreDataManager.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		14285CE2C44C2E3D46D68D87 /* Pods-MapBookmarksApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapBookmarksApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MapBookmarksApp/Pods-MapBookmarksApp.debug.xcconfig"; sourceTree = "<group>"; };
+		8DB8CCE7EEDFACAED8A2E739 /* libPods-MapBookmarksApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MapBookmarksApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AADFC271B312015C7785985F /* Pods-MapBookmarksApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapBookmarksApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MapBookmarksApp/Pods-MapBookmarksApp.release.xcconfig"; sourceTree = "<group>"; };
+		EE28EB931BF3A998007CF73A /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		EE28EB941BF3A998007CF73A /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		EE786E3B1BF211C900B72F56 /* POLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POLocationManager.h; sourceTree = "<group>"; };
+		EE786E3C1BF211C900B72F56 /* POLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POLocationManager.m; sourceTree = "<group>"; };
+		EEA0D46A1BF49FE50077B6B4 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		EEA0D46C1BF49FF10077B6B4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		EEAF54351BF07890005703A0 /* MapBookmarksApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapBookmarksApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEAF54391BF07890005703A0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EEAF543B1BF07890005703A0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EEAF543C1BF07890005703A0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		EEAF543E1BF07890005703A0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		EEAF543F1BF07890005703A0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		EEAF54421BF07890005703A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EEAF54451BF07890005703A0 /* MapBookmarksApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MapBookmarksApp.xcdatamodel; sourceTree = "<group>"; };
 		EEAF54471BF07890005703A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EEAF544A1BF07890005703A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EEAF544C1BF07890005703A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EEAF54521BF07A85005703A0 /* POMainMapScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POMainMapScreenViewController.h; sourceTree = "<group>"; };
+		EEAF54531BF07A85005703A0 /* POMainMapScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POMainMapScreenViewController.m; sourceTree = "<group>"; };
+		EEE089901BF0F28E00DA49A5 /* POCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POCoreDataManager.h; sourceTree = "<group>"; };
+		EEE089911BF0F28E00DA49A5 /* POCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POCoreDataManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +52,43 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEA0D46D1BF49FF10077B6B4 /* CoreLocation.framework in Frameworks */,
+				EEA0D46B1BF49FE50077B6B4 /* CoreData.framework in Frameworks */,
+				5A95DE2C8BDEFD2E9AF89F26 /* libPods-MapBookmarksApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01133BC859029F0D54291265 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EEA0D46C1BF49FF10077B6B4 /* CoreLocation.framework */,
+				EEA0D46A1BF49FE50077B6B4 /* CoreData.framework */,
+				8DB8CCE7EEDFACAED8A2E739 /* libPods-MapBookmarksApp.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8F52CC008327B5C1630D6101 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				14285CE2C44C2E3D46D68D87 /* Pods-MapBookmarksApp.debug.xcconfig */,
+				AADFC271B312015C7785985F /* Pods-MapBookmarksApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		EEAF542C1BF07890005703A0 = {
 			isa = PBXGroup;
 			children = (
+				EE28EB931BF3A998007CF73A /* Location.h */,
+				EE28EB941BF3A998007CF73A /* Location.m */,
 				EEAF54371BF07890005703A0 /* MapBookmarksApp */,
 				EEAF54361BF07890005703A0 /* Products */,
+				8F52CC008327B5C1630D6101 /* Pods */,
+				01133BC859029F0D54291265 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,10 +103,12 @@
 		EEAF54371BF07890005703A0 /* MapBookmarksApp */ = {
 			isa = PBXGroup;
 			children = (
+				EEE0899A1BF1023F00DA49A5 /* Location */,
+				EEE089931BF0F29A00DA49A5 /* CoreData */,
 				EEAF543B1BF07890005703A0 /* AppDelegate.h */,
 				EEAF543C1BF07890005703A0 /* AppDelegate.m */,
-				EEAF543E1BF07890005703A0 /* ViewController.h */,
-				EEAF543F1BF07890005703A0 /* ViewController.m */,
+				EEAF54521BF07A85005703A0 /* POMainMapScreenViewController.h */,
+				EEAF54531BF07A85005703A0 /* POMainMapScreenViewController.m */,
 				EEAF54411BF07890005703A0 /* Main.storyboard */,
 				EEAF54471BF07890005703A0 /* Assets.xcassets */,
 				EEAF54491BF07890005703A0 /* LaunchScreen.storyboard */,
@@ -82,6 +127,25 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		EEE089931BF0F29A00DA49A5 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				EEE089901BF0F28E00DA49A5 /* POCoreDataManager.h */,
+				EEE089911BF0F28E00DA49A5 /* POCoreDataManager.m */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
+		EEE0899A1BF1023F00DA49A5 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				EE786E3B1BF211C900B72F56 /* POLocationManager.h */,
+				EE786E3C1BF211C900B72F56 /* POLocationManager.m */,
+			);
+			name = Location;
+			path = ..;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -89,9 +153,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EEAF544F1BF07890005703A0 /* Build configuration list for PBXNativeTarget "MapBookmarksApp" */;
 			buildPhases = (
+				64E665050560A00788004A8C /* Check Pods Manifest.lock */,
 				EEAF54311BF07890005703A0 /* Sources */,
 				EEAF54321BF07890005703A0 /* Frameworks */,
 				EEAF54331BF07890005703A0 /* Resources */,
+				7547FA21680AD422ECA79402 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -108,6 +174,7 @@
 		EEAF542D1BF07890005703A0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = PO;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = PavelOstanin;
 				TargetAttributes = {
@@ -147,15 +214,51 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		64E665050560A00788004A8C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7547FA21680AD422ECA79402 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MapBookmarksApp/Pods-MapBookmarksApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EEAF54311BF07890005703A0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE786E3D1BF211C900B72F56 /* POLocationManager.m in Sources */,
 				EEAF54461BF07890005703A0 /* MapBookmarksApp.xcdatamodeld in Sources */,
-				EEAF54401BF07890005703A0 /* ViewController.m in Sources */,
 				EEAF543D1BF07890005703A0 /* AppDelegate.m in Sources */,
+				EEE089921BF0F28E00DA49A5 /* POCoreDataManager.m in Sources */,
 				EEAF543A1BF07890005703A0 /* main.m in Sources */,
+				EE28EB961BF3A998007CF73A /* Location.m in Sources */,
+				EEAF54541BF07A85005703A0 /* POMainMapScreenViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,7 +320,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -255,7 +358,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -265,6 +368,7 @@
 		};
 		EEAF54501BF07890005703A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 14285CE2C44C2E3D46D68D87 /* Pods-MapBookmarksApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MapBookmarksApp/Info.plist;
@@ -276,6 +380,7 @@
 		};
 		EEAF54511BF07890005703A0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AADFC271B312015C7785985F /* Pods-MapBookmarksApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MapBookmarksApp/Info.plist;
@@ -304,6 +409,7 @@
 				EEAF54511BF07890005703A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
