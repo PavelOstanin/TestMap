@@ -27,6 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addMyLocationOnMap) name:@"UpdateLocation" object:nil];
     self.navigationController.navigationBar.alpha = 0.5;
     self.mainPlaceMap.delegate = self;
     self.listOfPlace = [NSMutableArray array];
@@ -36,7 +37,6 @@
         [[POLocationManager shared] addLocation:((CLLocation*)loc.location).coordinate onMapView:self.mainPlaceMap];
     }
     [[POLocationManager shared] initCurrentLocation];
-    [self addMyLocationOnMap];
 }
 
 #pragma mark - add current location on map

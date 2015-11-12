@@ -13,6 +13,7 @@
 
 @interface POLocationManager : NSObject <CLLocationManagerDelegate, MKMapViewDelegate>
 
+@property (strong, nonatomic) CLLocation *lastValidLocation;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 
 + (instancetype)shared;
