@@ -40,7 +40,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:@"unwindToMap" sender:self];
+    self.blockGetIndexBookmark(indexPath.row);
 }
 
 @end

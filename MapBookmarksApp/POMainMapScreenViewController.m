@@ -98,11 +98,12 @@
 #pragma mark - popover controller methods
 
 - (IBAction)showPopover:(id)sender {
-  //  UINavigationController* contentViewController = [[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"bookmarksTable"]];
-   // self.popoverController = [[WYPopoverController alloc] initWithContentViewController:contentViewController];
-  //  self.popoverController.delegate = self;
-   // [self.popoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:WYPopoverArrowDirectionNone animated:YES];
-    [self performSegueWithIdentifier:@"show" sender:self];
+//    UINavigationController* contentViewController = [[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"bookmarksTable"]];
+//    self.popoverController = [[WYPopoverController alloc] initWithContentViewController:contentViewController];
+//    self.popoverController.delegate = self;
+//    [self.popoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:WYPopoverArrowDirectionNone animated:YES];
+    
+    [self performSegueWithIdentifier:@"show" sender:sender];
 }
 
 - (BOOL)popoverControllerShouldDismissPopover:(WYPopoverController *)controller {
@@ -115,19 +116,17 @@
 
 #pragma  mark - segue
 
-- (IBAction)unwindFromBookmarksList:(UIStoryboardSegue *)segue {
-    if ([segue.identifier isEqualToString:@"unwindToMap"]) {
-    }
-}
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"show"])
     {
         WYStoryboardPopoverSegue* popoverSegue = (WYStoryboardPopoverSegue*)segue;
         
-        UIViewController* destinationViewController = (UIViewController *)segue.destinationViewController;
-        destinationViewController.contentSizeForViewInPopover = CGSizeMake(280, 280);       // Deprecated in iOS7. Use 'preferredContentSize' instead.
-        
+        POBookmarksTableViewController* destinationViewController = (POBookmarksTableViewController *)segue.destinationViewController;
+//        destinationViewController.contentSizeForViewInPopover = CGSizeMake(280, 280);       // Deprecated in iOS7. Use 'preferredContentSize' instead.
+        destinationViewController.blockGetIndexBookmark = ^(NSInteger index){
+            NSLog(@"%ld",(long)index);
+            [self.popoverController dismissPopoverAnimated:YES];
+        };
         self.popoverController = [popoverSegue popoverControllerWithSender:sender permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES];
         self.popoverController.delegate = self;
     }

@@ -10,5 +10,6 @@
 
 @interface POBookmarksTableViewController : UITableViewController
 
+@property (nonatomic, copy) void (^blockGetIndexBookmark)(NSInteger index);
 
 @end

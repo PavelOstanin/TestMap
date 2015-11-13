@@ -123,14 +123,10 @@
                             <outlet property="delegate" destination="jIw-lO-gQW" id="b4Y-ft-IDB"/>
                         </connections>
                     </tableView>
-                    <connections>
-                        <segue destination="vuJ-HJ-cJ0" kind="unwind" identifier="unwindToMap" unwindAction="unwindFromBookmarksList:" id="Dqv-24-KKi"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ciE-ee-OGm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="vuJ-HJ-cJ0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1228.5" y="1029.75"/>
+            <point key="canvasLocation" x="1228.5" y="1071"/>
         </scene>
     </scenes>
 </document>
