@@ -12,19 +12,16 @@
 
 @interface POBookmarksTableViewController ()
 
-@property (strong, nonatomic) NSMutableArray *bookmarksList;
-
 @end
 
 @implementation POBookmarksTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.bookmarksList = [[POCoreDataManager shared] fetchRequestWithEntityName:@"Location"];
 }
 
 
-#pragma mark - Table view data source
+#pragma mark - Table view data source, Table view delegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.bookmarksList count];

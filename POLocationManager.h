@@ -19,6 +19,10 @@
 + (instancetype)shared;
 - (void)initCurrentLocation;
 - (void)addLocation:(CLLocationCoordinate2D)location onMapView:(MKMapView*)mapView;
+- (void)removeBookmarksAnnotationOnMapView:(MKMapView*)mapView;
 - (void)addMyLocationOnMapView:(MKMapView*)mapView;
+- (MKPolyline*)getPoliLineFromRoutesArray:(NSArray*)routes;
+- (void)moveCenterMapInDrawDirectionTo:(CLLocation*)location onMap:(MKMapView*)mapView;
+- (void)moveCenterMapTo:(CLLocationCoordinate2D)location onMap:(MKMapView*)mapView;
 
 @end

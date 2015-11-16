@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-MapBookmarksApp.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0FE12487C2CA99919DCBF6F7D7CB48CC</key>
+		<key>254D13B4E3A35D9347BB36B086C0B431</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>254D13B4E3A35D9347BB36B086C0B431</key>
+		<key>46884A152BF25D888DFB5A99B9238F8D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FFCC11E649D02C92DF6C5021068383BF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

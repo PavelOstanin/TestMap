@@ -20,17 +20,6 @@ static id instance;
     return instance;
 }
 
-//- (NSManagedObjectContext *)managedObjectContext{
-//    static NSManagedObjectContext *context = nil;
-//    if (context == nil) {
-//        id delegate = [[UIApplication sharedApplication] delegate];
-//        if ([delegate performSelector:@selector(managedObjectContext)]){
-//            context = [delegate managedObjectContext];
-//        }
-//    }
-//    return context;
-//}
-
 - (NSMutableArray *)fetchRequestWithEntityName:(NSString *)entityName{
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:entityName];

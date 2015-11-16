@@ -13,16 +13,16 @@
 #import "Location.h"
 #import "POLocationManager.h"
 #import "POBookmarksTableViewController.h"
-
 #import <WYPopoverController.h>
 #import <WYStoryboardPopoverSegue.h>
+#import "PODataFetcher.h"
 
 @interface POMainMapScreenViewController ()<MKMapViewDelegate, WYPopoverControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mainPlaceMap;
 @property (strong, nonatomic) NSMutableArray *listOfPlace;
 @property (strong, nonatomic) WYPopoverController* popoverController;
-@property (strong, nonatomic) UITableView* bookmarksTable;
+@property (assign, nonatomic) BOOL isDirection;
 
 @end
 
@@ -30,6 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.isDirection = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(addMyLocationOnMap)
                                                  name:@"UpdateLocation"
@@ -47,11 +48,13 @@
 }
 
 #pragma mark - add locations on map
+
 - (void)addBookmarksOnMap {
     for (Location *loc in self.listOfPlace) {
         [[POLocationManager shared] addLocation:((CLLocation*)loc.location).coordinate onMapView:self.mainPlaceMap];
     }
 }
+
 - (void)addMyLocationOnMap {
     [[POLocationManager shared] addMyLocationOnMapView:self.mainPlaceMap];
 }
@@ -65,9 +68,15 @@
     CLLocationCoordinate2D touchMapCoordinate =
     [self.mainPlaceMap convertPoint:touchPoint toCoordinateFromView:self.mainPlaceMap];
     [[POLocationManager shared] addLocation:touchMapCoordinate onMapView:self.mainPlaceMap];
+    [self saveBookmarkWithCoordinate:touchMapCoordinate];
+}
+
+#pragma mark - save location
+
+- (void)saveBookmarkWithCoordinate:(CLLocationCoordinate2D)coordinate{
     NSManagedObjectContext *context = [[POCoreDataManager shared] managedObjectContext];
     Location *savingLocation = [NSEntityDescription insertNewObjectForEntityForName:@"Location" inManagedObjectContext:context];
-    savingLocation.location = [[CLLocation alloc] initWithLatitude:touchMapCoordinate.latitude longitude:touchMapCoordinate.longitude];
+    savingLocation.location = [[CLLocation alloc] initWithLatitude:coordinate.latitude longitude:coordinate.longitude];
     NSError *error = nil;
     if (![context save:&error]){
         NSLog(@"Can't save %@ %@", error, [error localizedDescription]);
@@ -75,40 +84,26 @@
     self.listOfPlace = [[POCoreDataManager shared] fetchRequestWithEntityName:@"Location"];
 }
 
-- (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation {
-    static NSString *SFAnnotationIdentifier = @"SFAnnotationIdentifier";
-    MKPinAnnotationView *pinView =
-    (MKPinAnnotationView *)[self.mainPlaceMap dequeueReusableAnnotationViewWithIdentifier:SFAnnotationIdentifier];
-    if (!pinView && [[annotation title] isEqualToString:@"MyLocation"]) {
-        NSLog(@"%f",[annotation coordinate].latitude);
-        NSLog(@"%f",[annotation coordinate].longitude);
-        MKAnnotationView *annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation
-                                                                        reuseIdentifier:SFAnnotationIdentifier];
-        UIImage *flagImage = [UIImage imageNamed:@"arrow"];
-
-        annotationView.image = flagImage;
-        return annotationView;
-    }
-    else {
-        pinView.annotation = annotation;
-    }
-    return pinView;
-}
-
 #pragma mark - popover controller methods
 
 - (IBAction)showPopover:(id)sender {
-//    UINavigationController* contentViewController = [[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"bookmarksTable"]];
-//    self.popoverController = [[WYPopoverController alloc] initWithContentViewController:contentViewController];
-//    self.popoverController.delegate = self;
-//    [self.popoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:WYPopoverArrowDirectionNone animated:YES];
-    
-    [self performSegueWithIdentifier:@"show" sender:sender];
+    if (!self.isDirection) {
+        [self performSegueWithIdentifier:@"show" sender:sender];
+    }
+    else {
+        [[POLocationManager shared] moveCenterMapTo:[POLocationManager shared].lastValidLocation.coordinate onMap:self.mainPlaceMap];
+        self.isDirection = NO;
+        self.navigationItem.leftBarButtonItem.title = @"Route";
+        [self.mainPlaceMap removeOverlays:self.mainPlaceMap.overlays];
+        [[POLocationManager shared] removeBookmarksAnnotationOnMapView:self.mainPlaceMap];
+        [self addBookmarksOnMap];
+    }
 }
 
 - (BOOL)popoverControllerShouldDismissPopover:(WYPopoverController *)controller {
     return YES;
 }
+
 - (void)popoverControllerDidDismissPopover:(WYPopoverController *)controller {
     self.popoverController.delegate = nil;
     self.popoverController = nil;
@@ -120,15 +115,60 @@
     if ([segue.identifier isEqualToString:@"show"])
     {
         WYStoryboardPopoverSegue* popoverSegue = (WYStoryboardPopoverSegue*)segue;
-        
         POBookmarksTableViewController* destinationViewController = (POBookmarksTableViewController *)segue.destinationViewController;
 //        destinationViewController.contentSizeForViewInPopover = CGSizeMake(280, 280);       // Deprecated in iOS7. Use 'preferredContentSize' instead.
+        destinationViewController.bookmarksList = [self.listOfPlace mutableCopy];
         destinationViewController.blockGetIndexBookmark = ^(NSInteger index){
-            NSLog(@"%ld",(long)index);
+            Location *loc = self.listOfPlace[index];
+            self.navigationItem.leftBarButtonItem.title = @"Clear route";
+            [self drawDirectionToLocation:((CLLocation*)loc.location)];
             [self.popoverController dismissPopoverAnimated:YES];
         };
         self.popoverController = [popoverSegue popoverControllerWithSender:sender permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES];
         self.popoverController.delegate = self;
     }
 }
+#pragma mark - move direction
+
+- (void)drawDirectionToLocation:(CLLocation *)location{
+    self.isDirection = YES;
+    [[POLocationManager shared] removeBookmarksAnnotationOnMapView:self.mainPlaceMap];
+    [[POLocationManager shared] addLocation:location.coordinate onMapView:self.mainPlaceMap];
+    [PODataFetcher getPolyLineArrayFromStartCoordinate:[POLocationManager shared].lastValidLocation.coordinate toFinishCoordinate:location.coordinate onSuccess:^(NSMutableDictionary *result){
+        if ([result objectForKey:@"routes"]) {
+            MKPolyline *polyline = [[POLocationManager shared] getPoliLineFromRoutesArray:[result objectForKey:@"routes"]];
+            [[POLocationManager shared] moveCenterMapInDrawDirectionTo:location onMap:self.mainPlaceMap];
+            [self.mainPlaceMap addOverlay:polyline];
+        }
+    }failure:^(NSError *error){
+        NSLog(@"%@",error.localizedDescription);
+    }];
+}
+
+#pragma mark - MKMapViewDelegate
+
+- (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation {
+    static NSString *annotationIdentifier = @"annotationIdentifier";
+    MKPinAnnotationView *pinView =
+    (MKPinAnnotationView *)[self.mainPlaceMap dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
+    if (!pinView && [[annotation title] isEqualToString:@"MyLocation"]) {
+        MKAnnotationView *annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation
+                                                                        reuseIdentifier:annotationIdentifier];
+        UIImage *flagImage = [UIImage imageNamed:@"arrow"];
+        annotationView.image = flagImage;
+        return annotationView;
+    }
+    else {
+        pinView.annotation = annotation;
+    }
+    return pinView;
+}
+
+- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay {
+    MKPolylineView *polylineView = [[MKPolylineView alloc] initWithPolyline:overlay];
+    polylineView.strokeColor = [UIColor colorWithRed:61.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:0.5];
+    polylineView.lineWidth = 7;
+    return polylineView;
+}
+
 @end

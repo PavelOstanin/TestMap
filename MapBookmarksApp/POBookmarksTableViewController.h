@@ -11,5 +11,6 @@
 @interface POBookmarksTableViewController : UITableViewController
 
 @property (nonatomic, copy) void (^blockGetIndexBookmark)(NSInteger index);
+@property (strong, nonatomic) NSMutableArray *bookmarksList;
 
 @end
