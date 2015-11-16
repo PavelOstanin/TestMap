@@ -6,18 +6,18 @@
 //  Copyright © 2015 PavelOstanin. All rights reserved.
 //
 
-#import "POBookmarksTableViewController.h"
-#import "POCoreDataManager.h"
+#import "POBookmarksPopoverTableViewController.h"
 #import "Location.h"
 
-@interface POBookmarksTableViewController ()
+@interface POBookmarksPopoverTableViewController ()
 
 @end
 
-@implementation POBookmarksTableViewController
+@implementation POBookmarksPopoverTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
 }
 
 
@@ -29,9 +29,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
-    }
     cell.textLabel.text = [NSString stringWithFormat:@"%@",((Location*)self.bookmarksList[indexPath.row]).location];
     return cell;
 }

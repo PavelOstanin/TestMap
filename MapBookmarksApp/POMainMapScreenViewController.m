@@ -12,10 +12,11 @@
 #import "POCoreDataManager.h"
 #import "Location.h"
 #import "POLocationManager.h"
-#import "POBookmarksTableViewController.h"
+#import "POBookmarksPopoverTableViewController.h"
 #import <WYPopoverController.h>
 #import <WYStoryboardPopoverSegue.h>
 #import "PODataFetcher.h"
+#import "POBookmarkListTableViewController.h"
 
 @interface POMainMapScreenViewController ()<MKMapViewDelegate, WYPopoverControllerDelegate>
 
@@ -88,7 +89,7 @@
 
 - (IBAction)showPopover:(id)sender {
     if (!self.isDirection) {
-        [self performSegueWithIdentifier:@"show" sender:sender];
+        [self performSegueWithIdentifier:@"showPopoverBookmarksList" sender:sender];
     }
     else {
         [[POLocationManager shared] moveCenterMapTo:[POLocationManager shared].lastValidLocation.coordinate onMap:self.mainPlaceMap];
@@ -112,12 +113,12 @@
 #pragma  mark - segue
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"show"])
+    if ([segue.identifier isEqualToString:@"showPopoverBookmarksList"])
     {
         WYStoryboardPopoverSegue* popoverSegue = (WYStoryboardPopoverSegue*)segue;
-        POBookmarksTableViewController* destinationViewController = (POBookmarksTableViewController *)segue.destinationViewController;
+        POBookmarksPopoverTableViewController* destinationViewController = segue.destinationViewController;
 //        destinationViewController.contentSizeForViewInPopover = CGSizeMake(280, 280);       // Deprecated in iOS7. Use 'preferredContentSize' instead.
-        destinationViewController.bookmarksList = [self.listOfPlace mutableCopy];
+        destinationViewController.bookmarksList = self.listOfPlace;
         destinationViewController.blockGetIndexBookmark = ^(NSInteger index){
             Location *loc = self.listOfPlace[index];
             self.navigationItem.leftBarButtonItem.title = @"Clear route";
@@ -126,6 +127,10 @@
         };
         self.popoverController = [popoverSegue popoverControllerWithSender:sender permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES];
         self.popoverController.delegate = self;
+    }
+    else if([segue.identifier isEqualToString:@"showBokmarksList"]) {
+        POBookmarkListTableViewController* destinationViewController = segue.destinationViewController;
+        destinationViewController.bookmarksList = self.listOfPlace;
     }
 }
 #pragma mark - move direction
