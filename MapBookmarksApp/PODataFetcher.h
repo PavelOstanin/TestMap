@@ -13,4 +13,6 @@
 
 + (void)getPolyLineArrayFromStartCoordinate:(CLLocationCoordinate2D)startCoordinate toFinishCoordinate:(CLLocationCoordinate2D)finishCoordinate onSuccess:(void (^)(NSMutableDictionary *result))success failure:(void (^)(NSError *error))failure;
 
++ (void)getListOfNearbyPlacesWithCoordinate:(CLLocationCoordinate2D)coordinate onSuccess:(void (^)(NSMutableArray *result))success failure:(void (^)(NSError *error))failure;
+
 @end

@@ -2,7 +2,7 @@
 //  Location.m
 //  MapBookmarksApp
 //
-//  Created by Pavel Ostanin on 11/11/2015.
+//  Created by Pavel Ostanin on 17/11/2015.
 //  Copyright © 2015 PavelOstanin. All rights reserved.
 //
 
@@ -11,5 +11,6 @@
 @implementation Location
 
 @dynamic location;
+@dynamic name;
 
 @end

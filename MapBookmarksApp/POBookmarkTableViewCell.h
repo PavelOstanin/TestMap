@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Location.h"
 
 @interface POBookmarkTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *name;
+- (void)setNameWithLocation:(Location*)location;
 
 @end

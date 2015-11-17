@@ -9,6 +9,8 @@
 #import "PODataFetcher.h"
 #import <AFNetworking/AFNetworking.h>
 
+static NSString *clientId = @"XADXAOPXCVJITGC5LR32KBKI4V1NIQZGY5XBHC3WYTCMUO5P";
+static NSString *clientSecret = @"OFGVJAQEZTQGZFGPZ5OOHBWBGFJ3BJCJV1Z5NZJKWCFUBX1V";
 
 @implementation PODataFetcher
 
@@ -18,29 +20,20 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:requestString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         success(responseObject);
-//        NSArray *routes = [responseObject objectForKey:@"routes"];
-//        NSDictionary *firstRoute = [routes objectAtIndex:0];
-//        NSDictionary *leg =  [[firstRoute objectForKey:@"legs"] objectAtIndex:0];
-//        NSArray *steps = [leg objectForKey:@"steps"];
-//        int stepIndex = 0;
-//        CLLocationCoordinate2D stepCoordinates[1  + [steps count] + 1];
-//        stepCoordinates[stepIndex] = currentLocation;
-//        
-//        for (NSDictionary *step in steps) {
-//            NSDictionary *start_location = [step objectForKey:@"start_location"];
-//            stepCoordinates[++stepIndex] = [self coordinateWithLocation:start_location];
-//            if ([steps count] == stepIndex){
-//                NSDictionary *end_location = [step objectForKey:@"end_location"];
-//                stepCoordinates[++stepIndex] = [self coordinateWithLocation:end_location];
-//            }
-//        }
-//        self.polyLine = [MKPolyline polylineWithCoordinates:stepCoordinates count:1 + stepIndex];
-//        polilyne(self.polyLine);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
-
 }
 
++ (void)getListOfNearbyPlacesWithCoordinate:(CLLocationCoordinate2D)coordinate onSuccess:(void (^)(NSMutableArray *result))success failure:(void (^)(NSError *error))failure {
+    
+    NSString *requestString = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?client_id=%@&client_secret=%@&v=20130815&ll=%f,%f", clientId,clientSecret,coordinate.latitude,coordinate.longitude];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:requestString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        success(responseObject[@"response"][@"venues"]);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
 
 @end

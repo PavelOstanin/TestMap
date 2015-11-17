@@ -9,6 +9,7 @@
 #import "POBookmarkListTableViewController.h"
 #import "Location.h"
 #import "POBookmarkTableViewCell.h"
+#import "PODetailInfoViewController.h"
 
 @interface POBookmarkListTableViewController ()
 
@@ -28,13 +29,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     POBookmarkTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    cell.name.text = [NSString stringWithFormat:@"%@",((Location*)self.bookmarksList[indexPath.row]).location];
+    [cell setNameWithLocation:self.bookmarksList[indexPath.row]];
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([[segue identifier] isEqualToString:@"showDetailInfo"]){
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        Location *selectedLocation = self.bookmarksList[indexPath.row];
+        ((PODetailInfoViewController*)segue.destinationViewController).location = selectedLocation;
+    }
 }
-
-
 
 @end

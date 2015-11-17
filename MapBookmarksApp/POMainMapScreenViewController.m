@@ -17,6 +17,7 @@
 #import <WYStoryboardPopoverSegue.h>
 #import "PODataFetcher.h"
 #import "POBookmarkListTableViewController.h"
+#import "PODetailInfoViewController.h"
 
 @interface POMainMapScreenViewController ()<MKMapViewDelegate, WYPopoverControllerDelegate>
 
@@ -40,8 +41,12 @@
     self.mainPlaceMap.delegate = self;
     self.listOfPlace = [NSMutableArray array];
     self.listOfPlace = [[POCoreDataManager shared] fetchRequestWithEntityName:@"Location"];
-    [self addBookmarksOnMap];
     [[POLocationManager shared] initCurrentLocation];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self addBookmarksOnMap];
 }
 
 - (void) dealloc {
@@ -51,6 +56,7 @@
 #pragma mark - add locations on map
 
 - (void)addBookmarksOnMap {
+    [[POLocationManager shared] removeBookmarksAnnotationOnMapView:self.mainPlaceMap];
     for (Location *loc in self.listOfPlace) {
         [[POLocationManager shared] addLocation:((CLLocation*)loc.location).coordinate onMapView:self.mainPlaceMap];
     }
@@ -78,6 +84,7 @@
     NSManagedObjectContext *context = [[POCoreDataManager shared] managedObjectContext];
     Location *savingLocation = [NSEntityDescription insertNewObjectForEntityForName:@"Location" inManagedObjectContext:context];
     savingLocation.location = [[CLLocation alloc] initWithLatitude:coordinate.latitude longitude:coordinate.longitude];
+    savingLocation.name = @"";
     NSError *error = nil;
     if (![context save:&error]){
         NSLog(@"Can't save %@ %@", error, [error localizedDescription]);
@@ -92,12 +99,7 @@
         [self performSegueWithIdentifier:@"showPopoverBookmarksList" sender:sender];
     }
     else {
-        [[POLocationManager shared] moveCenterMapTo:[POLocationManager shared].lastValidLocation.coordinate onMap:self.mainPlaceMap];
-        self.isDirection = NO;
-        self.navigationItem.leftBarButtonItem.title = @"Route";
-        [self.mainPlaceMap removeOverlays:self.mainPlaceMap.overlays];
-        [[POLocationManager shared] removeBookmarksAnnotationOnMapView:self.mainPlaceMap];
-        [self addBookmarksOnMap];
+        [self goToCenter:[POLocationManager shared].lastValidLocation.coordinate];
     }
 }
 
@@ -112,6 +114,16 @@
 
 #pragma  mark - segue
 
+-(IBAction)unwindFromDetailInfo:(UIStoryboardSegue*)segue{
+    PODetailInfoViewController *controller = segue.sourceViewController;
+    if ([segue.identifier isEqualToString:@"unwindToMapDirection"]) {
+        [self drawDirectionToLocation:((CLLocation*)controller.location.location)];
+    }
+    else if ([segue.identifier isEqualToString:@"unwindToCenterMap"]) {
+        [self goToCenter:((CLLocation*)controller.location.location).coordinate];
+    }
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showPopoverBookmarksList"])
     {
@@ -121,7 +133,6 @@
         destinationViewController.bookmarksList = self.listOfPlace;
         destinationViewController.blockGetIndexBookmark = ^(NSInteger index){
             Location *loc = self.listOfPlace[index];
-            self.navigationItem.leftBarButtonItem.title = @"Clear route";
             [self drawDirectionToLocation:((CLLocation*)loc.location)];
             [self.popoverController dismissPopoverAnimated:YES];
         };
@@ -133,9 +144,19 @@
         destinationViewController.bookmarksList = self.listOfPlace;
     }
 }
-#pragma mark - move direction
+#pragma mark - move/remove direction
+
+-  (void)goToCenter:(CLLocationCoordinate2D)coordinate {
+    [[POLocationManager shared] moveCenterMapTo:coordinate onMap:self.mainPlaceMap];
+    self.isDirection = NO;
+    self.navigationItem.leftBarButtonItem.title = @"Route";
+    [self.mainPlaceMap removeOverlays:self.mainPlaceMap.overlays];
+    [[POLocationManager shared] removeBookmarksAnnotationOnMapView:self.mainPlaceMap];
+    [self addBookmarksOnMap];
+}
 
 - (void)drawDirectionToLocation:(CLLocation *)location{
+    self.navigationItem.leftBarButtonItem.title = @"Clear route";
     self.isDirection = YES;
     [[POLocationManager shared] removeBookmarksAnnotationOnMapView:self.mainPlaceMap];
     [[POLocationManager shared] addLocation:location.coordinate onMapView:self.mainPlaceMap];
@@ -158,7 +179,7 @@
     (MKPinAnnotationView *)[self.mainPlaceMap dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
     if (!pinView && [[annotation title] isEqualToString:@"MyLocation"]) {
         MKAnnotationView *annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation
-                                                                        reuseIdentifier:annotationIdentifier];
+                                                                        reuseIdentifier:@"MyLocation"];
         UIImage *flagImage = [UIImage imageNamed:@"arrow"];
         annotationView.image = flagImage;
         return annotationView;

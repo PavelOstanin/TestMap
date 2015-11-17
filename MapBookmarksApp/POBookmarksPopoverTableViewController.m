@@ -8,6 +8,7 @@
 
 #import "POBookmarksPopoverTableViewController.h"
 #import "Location.h"
+#import "POBookmarkTableViewCell.h"
 
 @interface POBookmarksPopoverTableViewController ()
 
@@ -17,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+//     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
 }
 
 
@@ -28,8 +29,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@",((Location*)self.bookmarksList[indexPath.row]).location];
+    POBookmarkTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    [cell setNameWithLocation:self.bookmarksList[indexPath.row]];
     return cell;
 }
 
