@@ -166,7 +166,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Bookmarks List" id="S4m-wd-gOq">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="eyE-ez-xR4"/>
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="eyE-ez-xR4">
+                            <connections>
+                                <action selector="editButtonAction:" destination="986-Ln-nzH" id="nG3-Qd-Odm"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IYp-P2-g1u" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -363,6 +367,7 @@
                         <outlet property="tableView" destination="ozD-rC-3gk" id="YOm-DW-X4D"/>
                         <segue destination="M4j-I2-tKe" kind="unwind" identifier="unwindToMapDirection" unwindAction="unwindFromDetailInfo:" id="eHm-Pp-0xe"/>
                         <segue destination="M4j-I2-tKe" kind="unwind" identifier="unwindToCenterMap" unwindAction="unwindFromDetailInfo:" id="PFF-85-iQC"/>
+                        <segue destination="M4j-I2-tKe" kind="unwind" identifier="unwindToMap" unwindAction="unwindFromDetailInfo:" id="DAf-at-bWN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Sy-Ma-gRW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -375,7 +380,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0QA-kY-EU9" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yut-4Q-wUZ">
+                    <navigationBar key="navigationBar" alpha="0.5" contentMode="scaleToFill" id="yut-4Q-wUZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

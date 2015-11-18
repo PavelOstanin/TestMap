@@ -5,6 +5,7 @@ target 'MapBookmarksApp' do
     
 pod 'WYPopoverController'
 pod 'AFNetworking'
+pod 'SAMHUDView'
 
 end
 

@@ -10,6 +10,4 @@
 
 @interface POBookmarkListTableViewController : UITableViewController
 
-@property (strong, nonatomic) NSMutableArray *bookmarksList;
-
 @end

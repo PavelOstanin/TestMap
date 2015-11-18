@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SAMHUDView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>WYPopoverController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,12 +32,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>46884A152BF25D888DFB5A99B9238F8D</key>
+		<key>29E2845AD4907C7A706DE07A36309EE5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FFCC11E649D02C92DF6C5021068383BF</key>
+		<key>BFC29B22A4316256FC4DFDCF770E8D67</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E2939D9B447B56A548FB52B5C8A4B732</key>
 		<dict>
 			<key>primary</key>
 			<true/>

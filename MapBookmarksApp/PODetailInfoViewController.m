@@ -9,6 +9,7 @@
 #import "PODetailInfoViewController.h"
 #import "PODataFetcher.h"
 #import "POCoreDataManager.h"
+#import <SAMHUDView.h>
 
 @interface PODetailInfoViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -17,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) NSMutableArray *listOfNearbyPlaces;
+@property (strong, nonatomic) SAMHUDView *hud;
 
 @end
 
@@ -24,6 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.hud = [[SAMHUDView alloc] initWithTitle:@"Loading…" loading:YES];
     self.listOfNearbyPlaces = [NSMutableArray array];
      [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
     if ([self.location.name length] > 0) {
@@ -32,7 +35,8 @@
     }
     else {
         self.name.text = [NSString stringWithFormat:@"%f %f",((CLLocation*)self.location.location).coordinate.latitude, ((CLLocation*)self.location.location).coordinate.longitude];
-        self.loadPlacesButton.hidden = YES;
+        self.loadPlacesButton.hidden = NO;
+        self.tableView.hidden = YES;
         [self getListOfPlaces];
     }
 }
@@ -42,23 +46,30 @@
 - (IBAction)centerInMapAction:(id)sender {
     [self performSegueWithIdentifier:@"unwindToCenterMap" sender:self];
 }
+
 - (IBAction)buildRouteAction:(id)sender {
     [self performSegueWithIdentifier:@"unwindToMapDirection" sender:self];
 }
+
 - (IBAction)loadNearbyPlacesAction:(id)sender {
     [self getListOfPlaces];
 }
+
 - (IBAction)trashAction:(id)sender {
+    [self deleteLocation];
+    [self performSegueWithIdentifier:@"unwindToMap" sender:self];
 }
 
 - (void)getListOfPlaces {
+    [self.hud show];
     __weak __typeof(self)weakSelf = self;
     [PODataFetcher getListOfNearbyPlacesWithCoordinate:((CLLocation*)self.location.location).coordinate onSuccess:^(NSMutableArray *result){
         weakSelf.listOfNearbyPlaces = [NSMutableArray arrayWithArray:result];
+        [self.hud dismissAnimated:YES];
         [self changeHiden];
         [weakSelf.tableView reloadData];
     }failure:^(NSError *error){
-        
+        [self.hud dismissAnimated:YES];
     }];
 }
 
@@ -77,22 +88,37 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self changeHiden];
     self.name.text = self.listOfNearbyPlaces[indexPath.row][@"name"];
+    [self updateLocationName:self.listOfNearbyPlaces[indexPath.row][@"name"]];
+}
+
+#pragma mark - update/delete location
+
+- (void)updateLocationName:(NSString*)name{
     NSManagedObjectContext *context = [[POCoreDataManager shared] managedObjectContext];
     Location *savingLocation = self.location;
-//    savingLocation.location = [[CLLocation alloc]initWithLatitude:[self.listOfNearbyPlaces[indexPath.row][@"location"][@"lat"] doubleValue] longitude:[self.listOfNearbyPlaces[indexPath.row][@"location"][@"lng"] doubleValue]];
-    savingLocation.name = [self.listOfNearbyPlaces[indexPath.row] valueForKey:@"name"];
+    savingLocation.name = name;
     NSError *error = nil;
     if (![context save:&error]){
         NSLog(@"Can't save %@ %@", error,[error localizedDescription]);
     }
 }
 
+- (void)deleteLocation {
+    NSManagedObjectContext *context = [[POCoreDataManager shared] managedObjectContext];
+    [context deleteObject:self.location];
+    NSError *error = nil;
+    if (![context save:&error]){
+        NSLog(@"Can't delete %@ %@", error, [error localizedDescription]);
+    }
+}
+
 - (void)changeHiden {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.001f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [UIView transitionWithView:self.view
-                          duration:0.3f
+                          duration:0.5f
                            options:UIViewAnimationOptionTransitionCrossDissolve
                         animations:^ {
+                            self.tableView.contentOffset = CGPointZero;
                             self.tableView.hidden = !self.tableView.hidden;
                             self.loadPlacesButton.hidden = !self.loadPlacesButton.hidden;
                         }
