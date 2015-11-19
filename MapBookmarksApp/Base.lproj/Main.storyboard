@@ -24,6 +24,7 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="oby-uD-ES8" appends="YES" id="5mB-1s-6Oe"/>
+                                    <outletCollection property="gestureRecognizers" destination="0dT-5Q-oXP" appends="YES" id="BTD-CT-Ioi"/>
                                 </connections>
                             </mapView>
                         </subviews>
@@ -75,6 +76,7 @@
                     <connections>
                         <outlet property="mainPlaceMap" destination="uXY-Sq-ri9" id="DMm-zi-tcd"/>
                         <segue destination="jIw-lO-gQW" kind="custom" identifier="showPopoverBookmarksList" customClass="WYStoryboardPopoverSegue" id="LrY-wq-6lX"/>
+                        <segue destination="UxL-yA-am5" kind="show" identifier="segueDetailInfo" id="uMI-E5-vxa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -83,6 +85,12 @@
                         <action selector="handleGesture:" destination="BYZ-38-t0r" id="EG7-au-xfi"/>
                     </connections>
                 </pongPressGestureRecognizer>
+                <tapGestureRecognizer id="0dT-5Q-oXP">
+                    <connections>
+                        <action selector="dismissCalloutView:" destination="BYZ-38-t0r" id="h5j-i4-4Sr"/>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="k4N-K8-UXi"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1228.5" y="364.5"/>
         </scene>
@@ -210,10 +218,14 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qeh-gc-edP">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" red="0.23777254649999999" green="0.47735497240000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="elC-SC-X5h"/>
                                 </constraints>
-                                <state key="normal" title="Center in map"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="15"/>
+                                <state key="normal" title="Center in map">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="elC-SC-X5h"/>
@@ -230,10 +242,14 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eFY-pD-xXc">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" red="0.23777254649999999" green="0.47735497240000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="7Bj-FO-r3x"/>
                                 </constraints>
-                                <state key="normal" title="Build route"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="15"/>
+                                <state key="normal" title="Build route">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="7Bj-FO-r3x"/>
@@ -250,10 +266,14 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Et6-Fi-8AV">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" red="0.23777254649999999" green="0.47735497240000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="0b8-um-oH5"/>
                                 </constraints>
-                                <state key="normal" title="Load nearby places"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="15"/>
+                                <state key="normal" title="Load nearby places">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="0b8-um-oH5"/>
@@ -473,4 +493,7 @@
             <point key="canvasLocation" x="1228.5" y="1071"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="uMI-E5-vxa"/>
+    </inferredMetricsTieBreakers>
 </document>

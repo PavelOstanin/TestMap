@@ -19,21 +19,27 @@
 #import "POBookmarkListTableViewController.h"
 #import "PODetailInfoViewController.h"
 #import <SAMHUDView.h>
+#import "POCustomCalloutView.h"
+#import "PODetailInfoViewController.h"
 
-@interface POMainMapScreenViewController ()<MKMapViewDelegate, WYPopoverControllerDelegate>
+@interface POMainMapScreenViewController ()<MKMapViewDelegate, WYPopoverControllerDelegate, POCustomCalloutDelegate, UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mainPlaceMap;
 @property (strong, nonatomic) NSMutableArray *listOfPlace;
 @property (strong, nonatomic) WYPopoverController* popoverController;
 @property (assign, nonatomic) BOOL isDirection;
 @property (strong, nonatomic) SAMHUDView *hud;
+@property (strong, nonatomic) POCustomCalloutView *calloutView;
 
 @end
+
+NSInteger currentAnnotationViewIndex;
 
 @implementation POMainMapScreenViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.calloutView = [[POCustomCalloutView alloc] init];
     self.isDirection = NO;
     self.hud = [[SAMHUDView alloc] initWithTitle:@"Loading…" loading:YES];
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -142,6 +148,10 @@
         self.popoverController = [popoverSegue popoverControllerWithSender:sender permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES];
         self.popoverController.delegate = self;
     }
+    else if ([segue.identifier isEqualToString:@"segueDetailInfo"]){
+        PODetailInfoViewController* destinitionViewController = segue.destinationViewController;
+        destinitionViewController.location = self.listOfPlace[currentAnnotationViewIndex];
+    }
 }
 #pragma mark - move/remove direction
 
@@ -188,7 +198,7 @@
     }
     else {
         MKAnnotationView *annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"location"];
-        annotationView.canShowCallout = YES;
+        annotationView.canShowCallout = NO;
         annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         pinView.annotation = annotation;
     }
@@ -201,23 +211,36 @@
     polylineView.lineWidth = 7;
     return polylineView;
 }
-
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
     [self performSegueWithIdentifier:@"DetailsIphone" sender:view];
 }
 
-- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
-{
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     [mapView deselectAnnotation:view.annotation animated:YES];
+    [self.calloutView removeFromSuperview];
     
-//    DetailsViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailsPopover"];
-//    controller.annotation = view.annotation;
-//    self.popover = [[UIPopoverController alloc] initWithContentViewController:controller];
-//    self.popover.delegate = self;
-//    [self.popover presentPopoverFromRect:view.frame
-//                                  inView:view.superview
-//                permittedArrowDirections:UIPopoverArrowDirectionAny
-//                                animated:YES];
+    CLLocationCoordinate2D coord= CLLocationCoordinate2DMake([view.annotation coordinate].latitude, [view.annotation coordinate].longitude);
+    for (Location *loc in self.listOfPlace){
+        if (((CLLocation*)loc.location).coordinate.latitude == coord.latitude && ((CLLocation*)loc.location).coordinate.longitude == coord.longitude){
+            self.calloutView = [POCustomCalloutView addCalloutViewWithLocation:loc];
+            currentAnnotationViewIndex = [self.listOfPlace indexOfObject:loc];
+            self.calloutView.delegate = self;
+            self.calloutView.frame = CGRectMake(view.frame.origin.x - 50, view.frame.origin.y - 50, 200, 50);
+            [self.mainPlaceMap addSubview:self.calloutView];
+            break;
+        }
+    }
+}
+
+#pragma mark - Action
+
+- (IBAction)dismissCalloutView:(UITapGestureRecognizer *)sender {
+    [self.calloutView removeFromSuperview];
+}
+
+- (void)clickSegueButton:(POCustomCalloutView *)view {
+    [self.calloutView removeFromSuperview];
+    [self performSegueWithIdentifier:@"segueDetailInfo" sender:nil];
 }
 
 @end
