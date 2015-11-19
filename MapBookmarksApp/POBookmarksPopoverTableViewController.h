@@ -12,7 +12,7 @@ typedef void (^blockGetIndexBookmark)(NSInteger index);
 
 @interface POBookmarksPopoverTableViewController : UITableViewController
 
-@property (nonatomic, copy) blockGetIndexBookmark block;
+@property (copy, nonatomic) blockGetIndexBookmark block;
 @property (strong, nonatomic) NSMutableArray *bookmarksList;
 
 @end
