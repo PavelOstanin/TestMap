@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^blockGetIndexBookmark)(NSInteger index);
+
 @interface POBookmarksPopoverTableViewController : UITableViewController
 
-@property (nonatomic, copy) void (^blockGetIndexBookmark)(NSInteger index);
+@property (nonatomic, copy) blockGetIndexBookmark block;
 @property (strong, nonatomic) NSMutableArray *bookmarksList;
 
 @end

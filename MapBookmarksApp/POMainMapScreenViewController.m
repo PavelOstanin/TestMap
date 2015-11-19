@@ -30,12 +30,21 @@
 @property (assign, nonatomic) BOOL isDirection;
 @property (strong, nonatomic) SAMHUDView *hud;
 @property (strong, nonatomic) POCustomCalloutView *calloutView;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
 
 NSInteger currentAnnotationViewIndex;
 
 @implementation POMainMapScreenViewController
+
+#pragma mark - Lazy getter
+
+-(NSManagedObjectContext*)managedObjectContext {
+    if (!_managedObjectContext)
+        _managedObjectContext = [POCoreDataManager shared].managedObjectContext;
+    return _managedObjectContext;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -47,7 +56,6 @@ NSInteger currentAnnotationViewIndex;
                                                  name:@"UpdateLocation"
                                                object:nil];
     self.navigationController.navigationBar.alpha = 0.5;
-    self.mainPlaceMap.delegate = self;
     self.listOfPlace = [NSMutableArray array];
     [[POLocationManager shared] initCurrentLocation];
 }
@@ -90,12 +98,11 @@ NSInteger currentAnnotationViewIndex;
 #pragma mark - save location
 
 - (void)saveBookmarkWithCoordinate:(CLLocationCoordinate2D)coordinate{
-    NSManagedObjectContext *context = [[POCoreDataManager shared] managedObjectContext];
-    Location *savingLocation = [NSEntityDescription insertNewObjectForEntityForName:@"Location" inManagedObjectContext:context];
+    Location *savingLocation = [NSEntityDescription insertNewObjectForEntityForName:@"Location" inManagedObjectContext:self.managedObjectContext];
     savingLocation.location = [[CLLocation alloc] initWithLatitude:coordinate.latitude longitude:coordinate.longitude];
     savingLocation.name = @"";
     NSError *error = nil;
-    if (![context save:&error]){
+    if (![self.managedObjectContext save:&error]){
         NSLog(@"Can't save %@ %@", error, [error localizedDescription]);
     }
     self.listOfPlace = [[POCoreDataManager shared] fetchRequestWithEntityName:@"Location"];
@@ -140,7 +147,7 @@ NSInteger currentAnnotationViewIndex;
         POBookmarksPopoverTableViewController* destinationViewController = segue.destinationViewController;
 //        destinationViewController.contentSizeForViewInPopover = CGSizeMake(280, 280);       // Deprecated in iOS7. Use 'preferredContentSize' instead.
         destinationViewController.bookmarksList = self.listOfPlace;
-        destinationViewController.blockGetIndexBookmark = ^(NSInteger index){
+        destinationViewController.block = ^(NSInteger index){
             Location *loc = self.listOfPlace[index];
             [self drawDirectionToLocation:((CLLocation*)loc.location)];
             [self.popoverController dismissPopoverAnimated:YES];
@@ -170,15 +177,16 @@ NSInteger currentAnnotationViewIndex;
     [[POLocationManager shared] removeBookmarksAnnotationOnMapView:self.mainPlaceMap];
     [[POLocationManager shared] addLocation:location.coordinate onMapView:self.mainPlaceMap];
     [self.hud show];
+    __weak __typeof(self)weakSelf = self;
     [PODataFetcher getPolyLineArrayFromStartCoordinate:[POLocationManager shared].lastValidLocation.coordinate toFinishCoordinate:location.coordinate onSuccess:^(NSMutableDictionary *result){
-        [self.hud dismissAnimated:YES];
+        [weakSelf.hud dismissAnimated:YES];
         if ([result objectForKey:@"routes"]) {
             MKPolyline *polyline = [[POLocationManager shared] getPoliLineFromRoutesArray:[result objectForKey:@"routes"]];
-            [[POLocationManager shared] moveCenterMapInDrawDirectionTo:location onMap:self.mainPlaceMap];
-            [self.mainPlaceMap addOverlay:polyline];
+            [[POLocationManager shared] moveCenterMapInDrawDirectionTo:location onMap:weakSelf.mainPlaceMap];
+            [weakSelf.mainPlaceMap addOverlay:polyline];
         }
     }failure:^(NSError *error){
-        [self.hud dismissAnimated:YES];
+        [weakSelf.hud dismissAnimated:YES];
         NSLog(@"%@",error.localizedDescription);
     }];
 }

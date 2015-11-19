@@ -22,7 +22,7 @@
     POCustomCalloutView *mainView = [[POCustomCalloutView alloc] init];
     mainView = [views objectAtIndex:0];
     mainView.name.text = location.name;
-    if ([location.name length] > 0) {
+    if ([location.name length]) {
         mainView.name.text = location.name;
     }
     else {

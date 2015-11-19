@@ -35,7 +35,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.blockGetIndexBookmark(indexPath.row);
+    self.block(indexPath.row);
 }
 
 @end

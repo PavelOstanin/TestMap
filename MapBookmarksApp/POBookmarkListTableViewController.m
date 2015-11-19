@@ -16,10 +16,19 @@
 
 @property (strong, nonatomic) NSMutableArray *bookmarksList;
 @property (assign, nonatomic) BOOL isEditStyle;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
 
 @implementation POBookmarkListTableViewController
+
+#pragma mark - Lazy getter
+
+-(NSManagedObjectContext*)managedObjectContext {
+    if (!_managedObjectContext)
+        _managedObjectContext = [POCoreDataManager shared].managedObjectContext;
+    return _managedObjectContext;
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -53,10 +62,9 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSManagedObjectContext *context = [[POCoreDataManager shared] managedObjectContext];
-        [context deleteObject:self.bookmarksList[indexPath.row]];
+        [self.managedObjectContext deleteObject:self.bookmarksList[indexPath.row]];
         NSError *error = nil;
-        if (![context save:&error]){
+        if (![self.managedObjectContext save:&error]){
             NSLog(@"Can't delete %@ %@", error, [error localizedDescription]);
         }
         [self.bookmarksList removeObjectAtIndex:indexPath.row];

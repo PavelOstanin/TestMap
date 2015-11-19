@@ -18,7 +18,7 @@
 @implementation POBookmarkTableViewCell
 
 - (void)setNameWithLocation:(Location*)location{
-    if ([location.name length] > 0) {
+    if ([location.name length]) {
         self.name.text = location.name;
     }
     else {

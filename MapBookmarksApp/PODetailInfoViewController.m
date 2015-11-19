@@ -19,17 +19,26 @@
 
 @property (strong, nonatomic) NSMutableArray *listOfNearbyPlaces;
 @property (strong, nonatomic) SAMHUDView *hud;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
 
 @implementation PODetailInfoViewController
+
+#pragma mark - Lazy getter
+
+-(NSManagedObjectContext*)managedObjectContext {
+    if (!_managedObjectContext)
+        _managedObjectContext = [POCoreDataManager shared].managedObjectContext;
+    return _managedObjectContext;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.hud = [[SAMHUDView alloc] initWithTitle:@"Loading…" loading:YES];
     self.listOfNearbyPlaces = [NSMutableArray array];
      [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
-    if ([self.location.name length] > 0) {
+    if ([self.location.name length]) {
         self.tableView.hidden = YES;
         self.name.text = self.location.name;
     }
@@ -65,11 +74,11 @@
     __weak __typeof(self)weakSelf = self;
     [PODataFetcher getListOfNearbyPlacesWithCoordinate:((CLLocation*)self.location.location).coordinate onSuccess:^(NSMutableArray *result){
         weakSelf.listOfNearbyPlaces = [NSMutableArray arrayWithArray:result];
-        [self.hud dismissAnimated:YES];
-        [self changeHiden];
+        [weakSelf.hud dismissAnimated:YES];
+        [weakSelf changeHiden];
         [weakSelf.tableView reloadData];
     }failure:^(NSError *error){
-        [self.hud dismissAnimated:YES];
+        [weakSelf.hud dismissAnimated:YES];
     }];
 }
 
@@ -94,20 +103,18 @@
 #pragma mark - update/delete location
 
 - (void)updateLocationName:(NSString*)name{
-    NSManagedObjectContext *context = [[POCoreDataManager shared] managedObjectContext];
     Location *savingLocation = self.location;
     savingLocation.name = name;
     NSError *error = nil;
-    if (![context save:&error]){
+    if (![self.managedObjectContext save:&error]){
         NSLog(@"Can't save %@ %@", error,[error localizedDescription]);
     }
 }
 
 - (void)deleteLocation {
-    NSManagedObjectContext *context = [[POCoreDataManager shared] managedObjectContext];
-    [context deleteObject:self.location];
+    [self.managedObjectContext deleteObject:self.location];
     NSError *error = nil;
-    if (![context save:&error]){
+    if (![self.managedObjectContext save:&error]){
         NSLog(@"Can't delete %@ %@", error, [error localizedDescription]);
     }
 }
